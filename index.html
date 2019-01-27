@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+
+<head>
+    <title>CTF Cryptography Utilities</title>
+
+    <link rel="stylesheet" href="index.css">
+    <script src="ciphertext.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="main-child">
+            <h1 class="text-center">CTF Cryptography Utilities</h1>
+            <p class="partial-width-center">Input your ciphertext here, and
+            then watch as the algorithms analyze the ciphertext and
+            work their magic upon it</p>
+            <div class="horizontal-spacing vertical-spacing">
+                <form id="main-input">
+                    <p>Input the text to be decoded:</p>
+                    <textarea id="ciphertext-input" autofocus
+                              rows="8" cols="80"></textarea>
+                    </br>
+                    <div class="center-horizontal">
+                        <input type="button" value="Analyze" onclick="magic();">
+                    </div>
+                </form>
+            </div>
+
+            <div id="footer" class="text-center">
+                <p>Maintained by Jarred Allen. Source code
+                <a href="https://github.com/JarredAllen/ctf_crypto_utils">
+                    on Github</a>.
+            </div>
+        </div>
+    </div>
+</body>
+
