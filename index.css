@@ -2,6 +2,10 @@ body {
     background-color: #555;
 }
 
+table, tr, th, td {
+    border: 1px solid black;
+}
+
 .partial-width-center {
     text-align: center;
     padding-left: 15%;
@@ -29,6 +33,10 @@ body {
     text-align: center;
 }
 
+#ciphertext-input {
+    width: 95%;
+}
+
 #footer {
     font-size: 10px;
     color: #aaa;
@@ -36,6 +44,10 @@ body {
     position: static;
     bottom: 0px;
     left: 0px;
+}
+
+#footer a {
+    color: #aaa;
 }
 
 #main {

@@ -17,13 +17,24 @@
             <div class="horizontal-spacing vertical-spacing">
                 <form id="main-input">
                     <p>Input the text to be decoded:</p>
-                    <textarea id="ciphertext-input" autofocus
-                              rows="8" cols="80"></textarea>
+                    <div class="center-horizontal">
+                        <textarea id="ciphertext-input" autofocus
+                                  rows=8></textarea>
+                    </div>
                     </br>
                     <div class="center-horizontal">
                         <input type="button" value="Analyze" onclick="magic();">
                     </div>
                 </form>
+            </div>
+
+            <div class="horizontal-spacing vertical-spacing">
+                <p id="missing-message">Input some text to analyze</p>
+                <div id="universal-analysis" hidden>
+                    <table id="ioc-table">
+                        <tr><th>Length</th><th>Index of Coincidence</th></tr>
+                    </table>
+                </div>
             </div>
 
             <div id="footer" class="text-center">
