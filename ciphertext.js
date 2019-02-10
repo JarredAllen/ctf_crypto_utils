@@ -6,10 +6,25 @@ function magic() {
     document.getElementById("universal-analysis").style.display = "block";
     var table = document.getElementById("ioc-table");
     table.innerHTML = "<tr><th>Length</th><th>Index of Coincidence</th></tr>";
-    for (var i=1; i<=likely_index_of_coincidence(ciphertext); i++) {
+    var iocs = Array(likely_index_of_coincidence(ciphertext));
+    var maxIoc = 0;
+    for (var i=0; i<iocs.length; i++) {
         var row = table.insertRow(-1);
-        row.insertCell(0).innerHTML = ""+i;
-        row.insertCell(1).innerHTML = ""+index_of_coincidence(ciphertext, i);
+        row.insertCell(0).innerHTML = ""+(i+1);
+        iocs[i] = index_of_coincidence(ciphertext, i+1);
+        row.insertCell(1).innerHTML = ""+iocs[i];
+        if (iocs[i] > maxIoc) {
+            maxIoc = iocs[i]
+        }
+    }
+    for (var i=1; i<=iocs.length; i++) {
+        var row = table.rows[i];
+        var cell = row.insertCell(2);
+        var width = Math.round(iocs[i-1]/maxIoc*95);
+        cell.innerHTML = "<div style=\"max-width="+width+
+                         + "%;\" class=\"bar-div\"></div>";
+        console.log(cell.innerHTML);
+        cell.width="100%";
     }
 }
 
@@ -48,7 +63,7 @@ function index_of_coincidence(message, length) {
 function likely_index_of_coincidence(text) {
     text = text.toLowerCase().replace(/\W/g, '');
     for(var t=1; true; t++) {
-        if (index_of_coincidence(text, t) > 0.065) {
+        if (index_of_coincidence(text, t) > 0.060) {
             return t;
         }
     }
