@@ -6,11 +6,18 @@ table, tr, th, td {
     border: 1px solid black;
 }
 
-.partial-width-center {
-    text-align: center;
+.partial-width{
     padding-left: 15%;
     padding-right: 15%;
     width: 70%;
+}
+
+.center {
+    text-align: center;
+}
+
+.small {
+    font-size: 75%;
 }
 
 .text-center {
