@@ -21,8 +21,8 @@ function magic() {
         var row = table.rows[i];
         var cell = row.insertCell(2);
         var width = Math.round(iocs[i-1]/maxIoc*95);
-        cell.innerHTML = "<div style=\"max-width="+width+
-                         + "%;\" class=\"bar-div\"></div>";
+        cell.innerHTML = "<div style=\"width:" + width+"%;\" "
+                         + "class=\"bar-div blue\"></div>";
         console.log(cell.innerHTML);
         cell.width="100%";
     }

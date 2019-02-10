@@ -42,8 +42,11 @@ table, tr, th, td {
 
 .bar-div {
     display: block;
-    height: 100%;
-    min-height: 15px;
+    height: 15px;
+}
+
+.blue {
+    color: blue;
     background-color: blue;
 }
 
