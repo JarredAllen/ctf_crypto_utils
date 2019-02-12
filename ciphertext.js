@@ -186,6 +186,7 @@ function vigenere_encode(ciphertext, key) {
             out += String.fromCharCode(c);
         }
     }
+    return out;
 }
 
 function vigenere_decode(ciphertext, key) {
