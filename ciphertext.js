@@ -1,7 +1,11 @@
 function magic() {
     ciphertext_input = document.getElementById("ciphertext-input");
-    ciphertext = ciphertext_input.value//.toLowerCase().replace(/\W/g, '');
+    ciphertext = ciphertext_input.value;//.toLowerCase().replace(/\W/g, '');
 
+    key = vigenere_key_crack(ciphertext);
+    console.log(vigenere_decode(ciphertext, key));
+}
+function build_ioc_table(ciphertext) {
     document.getElementById("missing-message").style.display = "none";
     document.getElementById("universal-analysis").style.display = "block";
     var table = document.getElementById("ioc-table");
@@ -26,6 +30,10 @@ function magic() {
         console.log(cell.innerHTML);
         cell.width="100%";
     }
+}
+
+function clean_text(text) {
+    return text.toLowerCase().replace(/\W/g, '');
 }
 
 function index_of_coincidence(message, length) {
@@ -137,6 +145,68 @@ function caesar_shift(ciphertext, rotation) {
             continue;
         }
         out += String.fromCharCode(c);
+    }
+    return out;
+}
+
+function vigenere_key_crack(ciphertext) {
+    ciphertext = clean_text(ciphertext);
+    var keylen = likely_index_of_coincidence(ciphertext);
+    var slots = Array(keylen);
+    for (var i=0; i<keylen; i++) {
+        slots[i] = "";
+    }
+    for (var i=0; i<ciphertext.length; i++) {
+        slots[i%keylen] += ciphertext.charAt(i);
+    }
+    key = '';
+    for (var i=0; i<keylen; i++) {
+        key += String.fromCharCode(97+26-correct_caesar_shift_amount(slots[i]));
+    }
+    return key.replace(/\{/g, 'a');
+}
+
+function vigenere_encode(ciphertext, key) {
+    var out = "";
+    var ki = 0;
+    for (var i=0; i<ciphertext.length; i++) {
+        var c = ciphertext.charCodeAt(i);
+        var k = key.charCodeAt(ki);
+        if (96<c && 123>c) {
+            out += String.fromCharCode((c+k-97*2)%26+97);
+            ki = (ki+1)%key.length;
+            continue;
+        }
+        else if (64<c && 91>c) {
+            out += String.fromCharCode((c+k-97-26)%26+65);
+            ki = (ki+1)%key.length;
+            continue;
+        }
+        else {
+            out += String.fromCharCode(c);
+        }
+    }
+}
+
+function vigenere_decode(ciphertext, key) {
+    var out = "";
+    var ki = 0;
+    for (var i=0; i<ciphertext.length; i++) {
+        var c = ciphertext.charCodeAt(i);
+        var k = key.charCodeAt(ki);
+        if (96<c && 123>c) {
+            out += String.fromCharCode((c-k+26)%26+97);
+            ki = (ki+1)%key.length;
+            continue;
+        }
+        else if (64<c && 91>c) {
+            out += String.fromCharCode((c-k+97-65+26)%26+65);
+            ki = (ki+1)%key.length;
+            continue;
+        }
+        else {
+            out += String.fromCharCode(c);
+        }
     }
     return out;
 }
