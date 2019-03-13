@@ -4,39 +4,51 @@
     <title>CTF Cryptography Utilities</title>
 
     <link rel="stylesheet" href="index.css">
-    <script type="module" src="main.js"></script>
+    <script src="index.js"></script>
+
+    <script src="caesar.js"></script>
 </head>
 
 <body>
     <div id="main">
         <div id="main-child">
             <h1 class="text-center">CTF Cryptography Utilities</h1>
-            <p class="partial-width center">Input your ciphertext here, and
-            then watch as the algorithms analyze the ciphertext and
-            work their magic upon it</p>
-            <div class="horizontal-spacing vertical-spacing">
-                <form id="main-input">
-                    <p>Input the text to be decoded:</p>
-                    <div class="center-horizontal">
-                        <textarea id="ciphertext-input" autofocus
-                                  rows=8></textarea>
-                    </div>
-                    </br>
-                    <div class="center-horizontal">
-                        <input type="button" value="Analyze" onclick="magic();">
-                    </div>
-                </form>
+            <div id="selection-menu">
+                <span onclick="load('home')">Home</span>
+                <span onclick="load('caesar')">Caesar Cipher</span>
+                <span onclick="load('subs')">Substitution Cipher</span>
+                <span onclick="load('vigenere')">Vigenere Cipher</span>
             </div>
-
-            <div class="horizontal-spacing vertical-spacing">
-                <p id="missing-message">Input some text to analyze</p>
-                <div id="universal-analysis" hidden>
-                    <table id="ioc-table">
-                        <tr><th>Length</th><th>Index of Coincidence</th></tr>
-                    </table>
+            <div id="index-child-page">
+                <div id="index-child-home">
+                    Home.
+                </div>
+                <div id="index-child-caesar" hidden>
+                    <p>
+                        The Caesar Cipher is an old encryption scheme where each
+                        letter in the input gets shifted a fixed amount through
+                        the alphabet. To reverse this encryption, shift the
+                        letters back in the opposite direction.
+                    </p>
+                    <div>
+                        <p>
+                            Encryption Key (leave blank to guess):
+                            <input id="caesar-key" type="number"></input> 
+                            <span id="caesar-mode" onclick="caesar_mode_change()">Decrypt</span>
+                        </p>
+                        <textarea id="caesar-input" autofocus
+                            style="width: 100%" rows=8></textarea>
+                        <input type="button" value="Go!" 
+                            onlick="run_caesar();return false;"></input>
+                    </div>
+                </div>
+                <div id="index-child-substitution" hidden>
+                    Substitution Cipher
+                </div>
+                <div id="index-child-vigenere" hidden>
+                    Vigenere Cipher
                 </div>
             </div>
-
             <div id="footer" class="text-center">
                 <p>Maintained by Jarred Allen. Source code
                 <a href="https://github.com/JarredAllen/ctf_crypto_utils">

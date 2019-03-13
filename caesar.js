@@ -1,4 +1,43 @@
-export {decode_caesar}
+function run_caesar() {
+    var target = document.getElementById('caesar-mode');
+    var key = document.getElementById('caesar-key');
+    var text = document.getElementById('caesar-input');
+    if (key.value == '') {
+        console.log('Unknown key, decrypting');
+        var ans = decode_caesar(text.value);
+        key.value = ans[0];
+        text.value = ans[1];
+        target.innerHTML = 'Encrypt';
+        return true;
+    }
+    if (target.innerHTML = 'Decrypt') {
+        console.log('Known key, decrypting');
+        text.value = caesar_shift(text.value, 26-parseInt(key.value));
+        caesar_mode_change();
+        return true;
+    }
+    if (target.innerHTML = 'Encrypt') {
+        console.log('Encrypting');
+        text.value = caesar_shift(text.value, parseInt(key.value));
+        caesar_mode_change();
+        return true;
+    }
+    return false;
+}
+function caesar_mode_change() {
+    var target = document.getElementById('caesar-mode');
+    var key = document.getElementById('caesar-key').value;
+    if (key == '') {
+        return false;
+    }
+    if (target.innerHTML === 'Decrypt') {
+        target.innerHTML = 'Encrypt';
+    }
+    else {
+        target.innerHTML = 'Decrypt';
+    }
+    return true;
+}
 
 function decode_caesar(ciphertext) {
     // Decodes caesar-encrypted data and returns the output.

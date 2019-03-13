@@ -1,5 +1,5 @@
 body {
-    background-color: #555;
+    background-color: #ecc;
 }
 
 table, tr, th, td {
@@ -78,5 +78,38 @@ table, tr, th, td {
     max-width: 80vw;
     padding: 25px;
     margin-top: 100px;
+}
+
+#selection-menu {
+    width: 100%;
+    text-align: center;
+}
+
+#selection-menu > span {
+    display: inline;
+    border: 1px solid black;
+    margin: 4px;
+    padding: 2px;
+}
+
+#selection-menu > span:hover {
+    background-color: #edd;
+    cursor: pointer;
+}
+
+#index-child-page {
+    width: 100%;
+    padding: 5px;
+    margin-top: 15px;
+    border: 2px solid black;
+}
+
+#caesar-mode {
+    border: 1px solid black;
+    padding: 3px;
+}
+#caesar-mode:hover {
+    cursor: pointer;
+    background-color: #edd;
 }
 
